@@ -21,7 +21,7 @@ public class Movie {
         this.id = Long.valueOf(movieRecord.getId());
         this.name = movieRecord.getName();
         this.experiences = movieRecord.getExperiences();
-        this.listingType = MovieListingType.valueOf(movieRecord.getListingType());
+        this.listingType = movieRecord.getListingType() != null ? MovieListingType.valueOf(movieRecord.getListingType()) : MovieListingType.NOT_SPECIFIED;
     }
 
     public Long getId() {
