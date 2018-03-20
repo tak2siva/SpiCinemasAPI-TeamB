@@ -1,5 +1,6 @@
 package spicinemas.api.db;
 
+import org.springframework.util.Assert;
 import spicinemas.api.model.Movie;
 import spicinemas.api.type.MovieListingType;
 import spicinemas.db.gen.tables.records.MovieRecord;
@@ -23,9 +24,11 @@ public class MovieRepository {
     private DSLContext dsl;
 
     public List<Movie> getNowShowingMovies() {
-         return dsl.selectFrom(MOVIE).fetchMap(MOVIE.ID)
-                 .values()
-                 .stream().map(Movie::new).collect(toList());
+        return dsl.selectFrom(MOVIE)
+                .where()
+                .fetchMap(MOVIE.ID)
+                .values()
+                .stream().map(Movie::new).collect(toList());
     }
 
     public void addMovie(Movie movie) {
@@ -42,5 +45,14 @@ public class MovieRepository {
                 .fetchOne()
                 .into(MovieRecord.class);
         return new Movie(movieRecord);
+    }
+
+    public List<Movie> getMovies(MovieListingType listingType) {
+        Assert.notNull(listingType);
+        return dsl.selectFrom(MOVIE)
+                .where(MOVIE.LISTING_TYPE.eq(listingType.toString()))
+                .fetchMap(MOVIE.ID)
+                .values()
+                .stream().map(Movie::new).collect(toList());
     }
 }

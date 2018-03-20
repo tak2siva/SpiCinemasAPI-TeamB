@@ -15,6 +15,9 @@ import spicinemas.api.type.MovieListingType;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertTrue;
+import static spicinemas.api.type.MovieListingType.COMING_SOON;
+import static spicinemas.api.type.MovieListingType.NOW_SHOWING;
 import static spicinemas.db.gen.tables.Movie.MOVIE;
 
 @RunWith(SpringRunner.class)
@@ -28,21 +31,25 @@ public class MovieRepositoryTest {
 
     @Before
     public void init() {
-        dslContext.truncate(MOVIE).execute();
     }
 
     @After
     public void tearDown() {
-        dslContext.truncate(MOVIE).execute();
     }
 
 
     @Test
-    public void shouldInsertUserInDb(){
-        String movieName = "Infinity War";
-        Movie expectedMovie = new Movie(movieName, "okay", MovieListingType.NOW_SHOWING);
-        movieRepo.addMovie(expectedMovie);
-        Movie actualMovie = movieRepo.getMovie(movieName);
-        assertThat(actualMovie, is(expectedMovie));
+    public void shouldReturnNowShowingMovies(){
+        assertTrue(movieRepo.getMovies(NOW_SHOWING).size() > 1);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldReturnNowShowingMoviesByDefault(){
+        movieRepo.getMovies(null);
+    }
+
+    @Test
+    public void shouldReturnComingSoonMovies(){
+        assertTrue(movieRepo.getMovies(COMING_SOON).size() > 1);
     }
 }
