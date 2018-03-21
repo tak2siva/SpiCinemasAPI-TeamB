@@ -13,6 +13,8 @@ import spicinemas.SpiCinemasApplication;
 import spicinemas.api.model.Movie;
 import spicinemas.api.type.MovieListingType;
 
+import java.util.Arrays;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertTrue;
@@ -52,4 +54,25 @@ public class MovieRepositoryTest {
     public void shouldReturnComingSoonMovies(){
         assertTrue(movieRepo.getMovies(COMING_SOON).size() > 1);
     }
+
+    @Test
+    public void shouldReturnComingSoonHindiMovies(){
+        assertTrue(movieRepo.getMoviesByFilters(COMING_SOON, Arrays.asList("Hindi")).size() >= 1);
+    }
+
+    @Test
+    public void shouldReturnNowShowingEnglishMovies(){
+        assertTrue(movieRepo.getMoviesByFilters(NOW_SHOWING, Arrays.asList("English")).size() >= 1);
+    }
+
+    @Test
+    public void shouldNotReturnMoviesIfUnknownLanguageIsSpecified(){
+        assertTrue(movieRepo.getMoviesByFilters(NOW_SHOWING, Arrays.asList("Unknown")).size() == 0);
+    }
+
+    @Test
+    public void shouldReturnNowShowingMoviesIfNoLanguageFilterIsSpecified(){
+        assertTrue(movieRepo.getMoviesByFilters(NOW_SHOWING, Arrays.asList()).size() >= 1);
+    }
+
 }

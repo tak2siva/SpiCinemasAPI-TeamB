@@ -6,6 +6,8 @@ import spicinemas.api.db.MovieRepository;
 import spicinemas.api.model.Movie;
 import spicinemas.api.type.MovieListingType;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -22,7 +24,21 @@ public class MovieService {
 
     public List<Movie> getMovies(Map<String, String> requestFilter) {
         MovieListingType listingType = getListingType(requestFilter);
-        return movieRepository.getMovies(listingType);
+        List<String> languageList = getMovieLanguages(requestFilter);
+
+        return movieRepository.getMoviesByFilters(listingType, languageList);
+    }
+
+    private List<String> getMovieLanguages(Map<String, String> requestFilter) {
+        List<String> languageList = new ArrayList<>();
+
+        if (requestFilter != null && requestFilter.containsKey("languages")) {
+            String languages = requestFilter.get("languages");
+            if (!languages.trim().isEmpty()) {
+                languageList = Arrays.asList(requestFilter.get("languages").split(","));
+            }
+        }
+        return languageList;
     }
 
     private MovieListingType getListingType(Map<String, String> requestFilter) {
