@@ -43,7 +43,7 @@ public class MovieServiceTest {
 
     @Test
     public void shouldReturnAllNowShowingMoviesForDefault(){
-        when(movieRepository.getMovies(NOW_SHOWING))
+        when(movieRepository.getMoviesByFilters(NOW_SHOWING, new ArrayList<>()))
                 .thenReturn(movieListReponse);
         List<Movie> movies = movieService.getMovies(requestFilter);
         assertEquals(3, movies.size());
@@ -51,7 +51,7 @@ public class MovieServiceTest {
 
     @Test
     public void shouldReturnOnlyComingSoonMoviesWhenMovieTypeIsComingSoon(){
-        when(movieRepository.getMovies(COMING_SOON))
+        when(movieRepository.getMoviesByFilters(COMING_SOON, new ArrayList<>()))
                 .thenReturn(movieListReponse);
         requestFilter.put(MOVIE_TYPE, "coming_soon");
         List<Movie> movies = movieService.getMovies(requestFilter);
@@ -60,7 +60,7 @@ public class MovieServiceTest {
 
     @Test
     public void shouldReturnNowShowingMoviesWhenNoFilterPassed(){
-        when(movieRepository.getMovies(NOW_SHOWING))
+        when(movieRepository.getMoviesByFilters(NOW_SHOWING, new ArrayList<>()))
                 .thenReturn(movieListReponse);
         List<Movie> movies = movieService.getMovies(new HashMap<>());
         assertEquals(3, movies.size());
@@ -68,7 +68,7 @@ public class MovieServiceTest {
 
     @Test
     public void shouldReturnNowShowingMoviesWhenFilterIsNull(){
-        when(movieRepository.getMovies(NOW_SHOWING))
+        when(movieRepository.getMoviesByFilters(NOW_SHOWING, new ArrayList<>()))
                 .thenReturn(movieListReponse);
         List<Movie> movies = movieService.getMovies(null);
         assertEquals(3, movies.size());

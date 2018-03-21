@@ -51,14 +51,14 @@ public class MovieRepository {
         return new Movie(movieRecord);
     }
 
-    public List<Movie> getMovies(MovieListingType listingType) {
-        Assert.notNull(listingType);
-        return dsl.selectFrom(MOVIE)
-                .where(MOVIE.LISTING_TYPE.eq(listingType.toString()))
-                .fetchMap(MOVIE.ID)
-                .values()
-                .stream().map(Movie::new).collect(toList());
-    }
+//    public List<Movie> getMovies(MovieListingType listingType) {
+//        Assert.notNull(listingType);
+//        return dsl.selectFrom(MOVIE)
+//                .where(MOVIE.LISTING_TYPE.eq(listingType.toString()))
+//                .fetchMap(MOVIE.ID)
+//                .values()
+//                .stream().map(Movie::new).collect(toList());
+//    }
 
     public List<Movie> getMoviesByFilters(MovieListingType listingType, List<String> languages){
         List<Integer> languageIds = dsl.select().from(LANGUAGE).where(LANGUAGE.NAME.in(languages)).fetch(LANGUAGE.ID);

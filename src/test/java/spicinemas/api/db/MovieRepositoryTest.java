@@ -14,6 +14,7 @@ import spicinemas.api.model.Movie;
 import spicinemas.api.type.MovieListingType;
 
 import java.util.Arrays;
+import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -41,21 +42,6 @@ public class MovieRepositoryTest {
 
 
     @Test
-    public void shouldReturnNowShowingMovies(){
-        assertTrue(movieRepo.getMovies(NOW_SHOWING).size() > 1);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void shouldReturnNowShowingMoviesByDefault(){
-        movieRepo.getMovies(null);
-    }
-
-    @Test
-    public void shouldReturnComingSoonMovies(){
-        assertTrue(movieRepo.getMovies(COMING_SOON).size() > 1);
-    }
-
-    @Test
     public void shouldReturnComingSoonHindiMovies(){
         assertTrue(movieRepo.getMoviesByFilters(COMING_SOON, Arrays.asList("Hindi")).size() >= 1);
     }
@@ -72,7 +58,18 @@ public class MovieRepositoryTest {
 
     @Test
     public void shouldReturnNowShowingMoviesIfNoLanguageFilterIsSpecified(){
-        assertTrue(movieRepo.getMoviesByFilters(NOW_SHOWING, Arrays.asList()).size() >= 1);
+        List<Movie> movieList = movieRepo.getMoviesByFilters(NOW_SHOWING, Arrays.asList());
+        assertTrue(movieList.size() >= 1);
+        assertTrue(movieList.stream().allMatch(movie -> movie.getListingType().equals(MovieListingType.NOW_SHOWING)));
+    }
+
+    @Test
+    public void shouldReturnComingSoonHindiAndEnglishMovies(){
+        List<Movie> movieList = movieRepo.getMoviesByFilters(COMING_SOON, Arrays.asList("Hindi", "English"));
+        assertTrue(movieList.size() >= 1);
+
+        assertTrue(movieList.stream().anyMatch(movie -> movie.getName().equals("Sultan")));
+        assertTrue(movieList.stream().anyMatch(movie -> movie.getName().equals("Suicide Squad")));
     }
 
 }
