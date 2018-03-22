@@ -1,16 +1,13 @@
 package spicinemas.api.db;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 import spicinemas.api.model.Movie;
 import spicinemas.api.service.MovieService;
-import spicinemas.api.type.MovieListingType;
 
 import java.util.*;
 
@@ -73,4 +70,25 @@ public class MovieServiceTest {
         List<Movie> movies = movieService.getMovies(null);
         assertEquals(3, movies.size());
     }
+
+    @Test
+    public void shouldReturnNowShowingMoviesWhenFilterHasIncorrectListingType(){
+        when(movieRepository.getMoviesByFilters(NOW_SHOWING, new ArrayList<>()))
+                .thenReturn(movieListReponse);
+        requestFilter.put(MOVIE_TYPE, "incorrect");
+        List<Movie> movies = movieService.getMovies(null);
+        assertEquals(3, movies.size());
+    }
+
+    @Test
+    public void shouldReturnSelectedLanguagesNowShowingMovies(){
+        when(movieRepository.getMoviesByFilters(NOW_SHOWING, Arrays.asList("English", "Hindi")))
+                .thenReturn(movieListReponse);
+        requestFilter.put("languages", "English,Hindi");
+        List<Movie> movies = movieService.getMovies(requestFilter);
+        assertEquals(3, movies.size());
+    }
+
+
+
 }

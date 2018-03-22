@@ -27,38 +27,6 @@ public class MovieRepository {
     @Autowired
     private DSLContext dsl;
 
-    public List<Movie> getNowShowingMovies() {
-        return dsl.selectFrom(MOVIE)
-                .where()
-                .fetchMap(MOVIE.ID)
-                .values()
-                .stream().map(Movie::new).collect(toList());
-    }
-
-    public void addMovie(Movie movie) {
-        dsl.insertInto(MOVIE)
-                .columns(MOVIE.NAME, MOVIE.EXPERIENCES, MOVIE.LISTING_TYPE)
-                .values(movie.getName(), movie.getExperiences(), movie.getListingType().toString())
-                .execute();
-    }
-
-    public Movie getMovie(String name) {
-        MovieRecord movieRecord = dsl.select()
-                .from(MOVIE)
-                .where(MOVIE.NAME.eq(name))
-                .fetchOne()
-                .into(MovieRecord.class);
-        return new Movie(movieRecord);
-    }
-
-//    public List<Movie> getMovies(MovieListingType listingType) {
-//        Assert.notNull(listingType);
-//        return dsl.selectFrom(MOVIE)
-//                .where(MOVIE.LISTING_TYPE.eq(listingType.toString()))
-//                .fetchMap(MOVIE.ID)
-//                .values()
-//                .stream().map(Movie::new).collect(toList());
-//    }
 
     public List<Movie> getMoviesByFilters(MovieListingType listingType, List<String> languages){
         List<Integer> languageIds = dsl.select().from(LANGUAGE).where(LANGUAGE.NAME.in(languages)).fetch(LANGUAGE.ID);
