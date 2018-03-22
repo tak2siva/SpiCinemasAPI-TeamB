@@ -1,13 +1,11 @@
 package spicinemas.api.controller;
 
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import spicinemas.api.db.MovieRepository;
 import spicinemas.api.model.Movie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import spicinemas.api.service.LocationService;
 import spicinemas.api.service.MovieService;
 import spicinemas.api.type.MovieListingType;
 
@@ -16,9 +14,12 @@ import java.util.Map;
 
 @RestController
 public class MovieController {
-    @Autowired
-    MovieService movieService;
 
+    @Autowired
+    private MovieService movieService;
+
+    @Autowired
+    private LocationService locationService;
 
     @RequestMapping(value = "/movies",
             method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -26,4 +27,8 @@ public class MovieController {
         return movieService.getMovies(requestParams);
     }
 
+    @GetMapping("/locations")
+    public List<String> getLocations(){
+        return locationService.getLocations();
+    }
 }
