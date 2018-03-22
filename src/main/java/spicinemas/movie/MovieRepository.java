@@ -1,20 +1,13 @@
-package spicinemas.api.db;
+package spicinemas.movie;
 
 import org.jooq.SelectJoinStep;
 import org.jooq.SelectOnConditionStep;
-import org.springframework.util.Assert;
-import spicinemas.api.model.Movie;
-import spicinemas.api.type.MovieListingType;
-import spicinemas.db.gen.tables.records.MovieRecord;
 import org.jooq.DSLContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collection;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
 import static spicinemas.db.gen.tables.Language.LANGUAGE;

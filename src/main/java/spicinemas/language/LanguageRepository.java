@@ -1,10 +1,9 @@
-package spicinemas.api.db;
+package spicinemas.language;
 
 import org.jooq.DSLContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import spicinemas.api.model.Language;
 import spicinemas.db.gen.tables.records.LanguageRecord;
 
 import static spicinemas.db.gen.tables.Language.*;

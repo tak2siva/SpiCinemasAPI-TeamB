@@ -1,4 +1,4 @@
-package spicinemas.api.db;
+package spicinemas.location;
 
 import org.jooq.DSLContext;
 import org.junit.Test;
@@ -8,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import spicinemas.SpiCinemasApplication;
+import spicinemas.location.LocationRepository;
 
 import static org.junit.Assert.assertTrue;
 

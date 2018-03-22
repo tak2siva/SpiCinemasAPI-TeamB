@@ -1,12 +1,10 @@
-package spicinemas.api.controller;
+package spicinemas.language;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import spicinemas.api.db.LanguageRepository;
-import spicinemas.api.model.Language;
 
 import java.util.List;
 

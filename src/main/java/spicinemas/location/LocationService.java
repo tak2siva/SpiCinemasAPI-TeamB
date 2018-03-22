@@ -1,8 +1,8 @@
-package spicinemas.api.service;
+package spicinemas.location;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import spicinemas.api.db.LocationRepository;
+import spicinemas.location.LocationRepository;
 
 import java.util.List;
 

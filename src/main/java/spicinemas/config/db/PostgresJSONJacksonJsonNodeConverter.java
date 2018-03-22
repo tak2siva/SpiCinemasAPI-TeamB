@@ -1,4 +1,4 @@
-package spicinemas.api.config.db;
+package spicinemas.config.db;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;

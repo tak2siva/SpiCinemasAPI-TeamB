@@ -1,4 +1,4 @@
-package spicinemas.api.config;
+package spicinemas.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

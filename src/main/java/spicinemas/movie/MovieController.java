@@ -1,13 +1,9 @@
-package spicinemas.api.controller;
+package spicinemas.movie;
 
 import org.springframework.web.bind.annotation.*;
-import spicinemas.api.db.MovieRepository;
-import spicinemas.api.model.Movie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import spicinemas.api.service.LocationService;
-import spicinemas.api.service.MovieService;
-import spicinemas.api.type.MovieListingType;
+import spicinemas.location.LocationService;
 
 import java.util.List;
 import java.util.Map;

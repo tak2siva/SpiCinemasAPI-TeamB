@@ -1,4 +1,4 @@
-package spicinemas.api.db;
+package spicinemas.movie;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -6,16 +6,17 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-import spicinemas.api.model.Movie;
-import spicinemas.api.service.MovieService;
+import spicinemas.movie.Movie;
+import spicinemas.movie.MovieService;
+import spicinemas.movie.MovieRepository;
 
 import java.util.*;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
-import static spicinemas.api.service.MovieService.MOVIE_TYPE;
-import static spicinemas.api.type.MovieListingType.COMING_SOON;
-import static spicinemas.api.type.MovieListingType.NOW_SHOWING;
+import static spicinemas.movie.MovieService.MOVIE_TYPE;
+import static spicinemas.movie.MovieListingType.COMING_SOON;
+import static spicinemas.movie.MovieListingType.NOW_SHOWING;
 
 @RunWith(MockitoJUnitRunner.class)
 public class MovieServiceTest {

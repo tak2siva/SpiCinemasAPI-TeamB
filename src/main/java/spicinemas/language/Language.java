@@ -1,4 +1,4 @@
-package spicinemas.api.model;
+package spicinemas.language;
 
 import lombok.EqualsAndHashCode;
 import spicinemas.db.gen.tables.records.LanguageRecord;

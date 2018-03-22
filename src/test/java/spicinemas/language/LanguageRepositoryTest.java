@@ -1,4 +1,4 @@
-package spicinemas.api.db;
+package spicinemas.language;
 
 import org.jooq.DSLContext;
 import org.junit.Test;
@@ -8,7 +8,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import spicinemas.SpiCinemasApplication;
-import spicinemas.api.model.Language;
+import spicinemas.language.Language;
+import spicinemas.language.LanguageRepository;
 
 import java.util.List;
 

@@ -1,17 +1,14 @@
-package spicinemas.api.service;
+package spicinemas.movie;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import spicinemas.api.db.MovieRepository;
-import spicinemas.api.model.Movie;
-import spicinemas.api.type.MovieListingType;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-import static spicinemas.api.type.MovieListingType.NOW_SHOWING;
+import static spicinemas.movie.MovieListingType.NOW_SHOWING;
 
 @Service
 public class MovieService {

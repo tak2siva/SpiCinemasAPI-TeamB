@@ -1,4 +1,4 @@
-package spicinemas.api.db;
+package spicinemas.location;
 
 import org.jooq.DSLContext;
 import org.springframework.beans.factory.annotation.Autowired;

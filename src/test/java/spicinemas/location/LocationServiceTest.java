@@ -1,4 +1,4 @@
-package spicinemas.api.db;
+package spicinemas.location;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -6,8 +6,8 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-import spicinemas.api.model.Movie;
-import spicinemas.api.service.LocationService;
+import spicinemas.location.LocationService;
+import spicinemas.location.LocationRepository;
 
 import java.util.ArrayList;
 import java.util.List;
