@@ -32,15 +32,6 @@ public class MovieRepositoryTest {
     @Autowired
     DSLContext dslContext;
 
-    @Before
-    public void init() {
-    }
-
-    @After
-    public void tearDown() {
-    }
-
-
     @Test
     public void shouldReturnComingSoonHindiMovies(){
         assertTrue(movieRepo.getMoviesByFilters(COMING_SOON, Arrays.asList("Hindi")).size() >= 1);
