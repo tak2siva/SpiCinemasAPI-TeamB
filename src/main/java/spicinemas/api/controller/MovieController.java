@@ -19,6 +19,7 @@ public class MovieController {
     @RequestMapping(value = "/init",
             method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public void init() {
+
         movieRepo.addMovie(new Movie("Dunkirk", "good", MovieListingType.NOW_SHOWING));
     }
 

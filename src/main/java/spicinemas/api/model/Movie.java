@@ -2,8 +2,6 @@ package spicinemas.api.model;
 
 import lombok.EqualsAndHashCode;
 import spicinemas.api.type.MovieListingType;
-import spicinemas.db.gen.tables.records.MovieRecord;
-
 @EqualsAndHashCode(exclude = {"id"})
 public class Movie {
     private Long id;
@@ -17,11 +15,8 @@ public class Movie {
         this.listingType = listingType;
     }
 
-    public Movie(MovieRecord movieRecord) {
-        this.id = Long.valueOf(movieRecord.getId());
-        this.name = movieRecord.getName();
-        this.experiences = movieRecord.getExperiences();
-        this.listingType = MovieListingType.valueOf(movieRecord.getListingType());
+    public Movie() {
+
     }
 
     public Long getId() {

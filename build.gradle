@@ -43,50 +43,6 @@ dependencies {
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
-jooq {
-	spicinemas(sourceSets.main) {
-		jdbc {
-			driver = 'org.postgresql.Driver'
-			url = "jdbc:postgresql://${config.db_host}:${config.port}/${config.db_name}"
-			user = config.username
-			password = config.password
-			schema = 'public'
-		}
-		generator {
-			name = 'org.jooq.util.DefaultGenerator'
-			strategy {
-				name = 'org.jooq.util.DefaultGeneratorStrategy'
-			}
-			database {
-				name = 'org.jooq.util.postgres.PostgresDatabase'
-				inputSchema = 'public'
-				customTypes {
-					customType {
-						name = 'com.fasterxml.jackson.databind.JsonNode'
-						converter = 'spicinemas.api.config.db.PostgresJSONJacksonJsonNodeBinding'
-					}
-				}
-				forcedTypes {
-					forcedType {
-						name = 'com.fasterxml.jackson.databind.JsonNode'
-						expression = 'public\\.controller\\.address'
-					}
-				}
-			}
-			generate {
-				relations = true
-				deprecated = false
-				records = true
-				immutablePojos = false
-				fluentSetters = true
-			}
-			target {
-				packageName = 'spicinemas.db.gen'
-				directory = 'src/main/generated/java'
-			}
-		}
-	}
-}
 
 ext {
 	local_url = 'jdbc:postgresql://localhost:7654/spicinemas'
@@ -100,5 +56,4 @@ flyway {
 	locations = ["filesystem:$project.projectDir/src/main/resources/db/migration"]
 }
 
-generateSpicinemasJooqSchemaSource.dependsOn flywayMigrate
 test.dependsOn flywayClean
